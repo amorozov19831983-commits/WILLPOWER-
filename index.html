@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willpower: Green Lantern</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00ff41">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <!-- Интеграция нового HTML-логотипа -->
+                <div class="lantern-container">
+                    <div class="outer-ring"></div>
+                    <div class="inner-groove">
+                        <div class="lantern-core">
+                            <div class="plate"></div>
+                            <div class="sphere-container">
+                                <div class="sphere-outer">
+                                    <div class="sphere-inner"></div>
+                                </div>
+                            </div>
+                            <div class="plate"></div>
+                        </div>
+                    </div>
+                    <div class="energy-glow"></div>
+                </div>
+            </div>
+            <h1 class="gl-title">WILLPOWER</h1>
+            <p class="subtitle">Don't be afraid</p>
+        </header>
+
+        <main>
+            <div class="status-card">
+                <div class="top-card-row">
+                    <div class="rank-badge" id="rank">Rookie Lantern</div>
+                    <div class="streak-badge">
+                        <span class="streak-icon">🔥</span> <span id="streak-val">0</span> Days
+                    </div>
+                </div>
+                <div class="user-info">
+                    <span class="label">Lantern:</span> 
+                    <input type="text" id="username-input" value="Hal Jordan" class="user-input">
+                </div>
+                
+                <div class="willpower-display">
+                    <span class="value" id="willpower-val">10</span>
+                    <span class="unit">Will Power</span>
+                </div>
+
+                <div class="level-container">
+                    <div class="level-text">Level <span id="level">1</span></div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="exp-bar"></div>
+                    </div>
+                    <div class="exp-text"><span id="current-exp">0</span> / <span id="next-exp">100</span> EXP</div>
+                </div>
+            </div>
+
+            <div class="action-grid">
+                <button id="train-btn" class="glow-button main-action">Focus Energy</button>
+                <button id="reset-btn" class="reset-button">Purify Ring</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="reset-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Ring Purification</h2>
+            <p id="reset-instruction">To reset your progress, you must swear the oath of the Green Lanterns.</p>
+            <div class="oath-box" id="oath-box">
+                <!-- Text will be injected here -->
+            </div>
+            <textarea id="oath-input" placeholder="Type the oath here..."></textarea>
+            <div class="modal-actions">
+                <button id="close-modal" class="glow-button small">Cancel</button>
+                <button id="confirm-reset" class="glow-button small">Swear Oath</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
