@@ -28,7 +28,7 @@ I'll embrace my fear, I'll do what's right.
 I choose this ring, I choose this fight,
 In service to this lantern's light.`
         ],
-        dailyExp: 50 // Опыт за ежедневный фокус
+        dailyExp: 50
     },
     
     save() {
@@ -40,47 +40,60 @@ In service to this lantern's light.`
         if (saved) {
             this.user = JSON.parse(saved);
         }
-        this.updateStreak();
+        this.checkStreakReset();
     },
     
-    updateStreak() {
-        const today = new Date().toDateString();
-        if (!this.user.lastLogin) {
-            this.user.streak = 1;
-            this.user.lastLogin = today;
-        } else {
-            const lastDate = new Date(this.user.lastLogin);
-            const todayDate = new Date();
-            const diffTime = Math.abs(todayDate - lastDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    checkStreakReset() {
+        if (!this.user.lastLogin) return;
 
-            if (diffDays === 1) {
-                this.user.streak++;
-                this.user.lastLogin = today;
-            } else if (diffDays > 1) {
-                this.user.streak = 1;
-                this.user.lastLogin = today;
-            }
+        const lastDate = new Date(this.user.lastLogin);
+        const today = new Date();
+        
+        // Считаем разницу в днях
+        const diffTime = Math.abs(today - lastDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        // Если прошло больше 1 дня с последнего захода — стрик сгорает
+        if (diffDays > 1) {
+            this.user.streak = 0;
+            this.save();
         }
-        this.save();
     },
     
     dailyFocus() {
         const today = new Date().toDateString();
+        
         if (this.user.lastFocusDate === today) {
             alert('Your ring is already charged for today, Lantern. Come back tomorrow!');
             return false;
         }
 
+        // 1. Обновляем дату последнего фокуса
         this.user.lastFocusDate = today;
+        
+        // 2. Начисляем опыт
         this.addExp(this.config.dailyExp);
         
-        // Если пользователь зашел и нажал кнопку, засчитываем это как активность дня
-        if (this.user.lastLogin !== today) {
-            this.user.streak++;
-            this.user.lastLogin = today;
+        // 3. Стрик увеличивается ТОЛЬКО при нажатии на кнопку
+        const lastLoginDate = this.user.lastLogin;
+        if (!lastLoginDate) {
+            this.user.streak = 1;
+        } else {
+            const lastDate = new Date(lastLoginDate);
+            const todayDate = new Date();
+            const diffTime = Math.abs(todayDate - lastDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 1) {
+                this.user.streak++;
+            } else if (diffDays > 1) {
+                this.user.streak = 1;
+            } else {
+                // Если нажали в тот же день, стрик не растет
+            }
         }
         
+        this.user.lastLogin = today;
         this.save();
         updateUI();
         alert('Energy focused! Your will is strong.');
