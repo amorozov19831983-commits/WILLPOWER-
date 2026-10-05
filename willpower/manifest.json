@@ -1,0 +1,20 @@
+{
+  "name": "Willpower GL",
+  "short_name": "Willpower",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff41",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

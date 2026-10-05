@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Основное свечение вокруг кольца -->
+    <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#00ff66" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000" stop-opacity="0" />
+    </radialGradient>
+    
+    <!-- Градиент для металла -->
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00ff66" />
+      <stop offset="50%" stop-color="#008833" />
+      <stop offset="100%" stop-color="#004411" />
+    </linearGradient>
+
+    <!-- Анимация пульсации -->
+    <filter id="neonBlur">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <style>
+      .pulse { animation: pulse 3s infinite ease-in-out; }
+      .glow-ring { animation: ringGlow 4s infinite alternate ease-in-out; }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.8; }
+      }
+      
+      @keyframes ringGlow {
+        0% { filter: drop-shadow(0 0 2px #00ff66); }
+        100% { filter: drop-shadow(0 0 8px #00ff66); }
+      }
+    </style>
+  </defs>
+
+  <!-- Фоновое мягкое свечение -->
+  <circle cx="50" cy="50" r="50" fill="url(#ringGlow)" />
+
+  <!-- Внешний металлический обод с эффектом объема -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#004411" stroke-width="4" />
+  <circle cx="50" cy="50" r="43" fill="none" stroke="#00ff66" stroke-width="1" opacity="0.5" />
+
+  <g class="pulse" style="transform-origin: center;">
+    <!-- Основной символ Фонаря -->
+    <!-- Верхняя перекладина -->
+    <rect x="20" y="25" width="60" height="10" fill="url(#metalGrad)" rx="1" filter="url(#neonBlur)" />
+    <!-- Нижняя перекладина -->
+    <rect x="20" y="65" width="60" height="10" fill="url(#metalGrad)" rx="1" filter="url(#neonBlur)" />
+    
+    <!-- Боковые стойки -->
+    <rect x="20" y="25" width="8" height="50" fill="url(#metalGrad)" rx="1" />
+    <rect x="72" y="25" width="8" height="50" fill="url(#metalGrad)" rx="1" />
+    
+    <!-- Центральный круг силы -->
+    <circle cx="50" cy="50" r="20" fill="none" stroke="#00ff66" stroke-width="4" class="glow-ring" filter="url(#neonBlur)" />
+    <circle cx="50" cy="50" r="15" fill="none" stroke="#00ff66" stroke-width="1" opacity="0.6" />
+    
+    <!-- Внутреннее ядро -->
+    <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ccffcc" />
+      <stop offset="100%" stop-color="#00ff66" />
+    </radialGradient>
+    <circle cx="50" cy="50" r="8" fill="url(#coreGrad)" filter="url(#neonBlur)">
+      <animate attributeName="r" values="7;9;7" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>

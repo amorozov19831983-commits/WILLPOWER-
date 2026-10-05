@@ -1,0 +1,139 @@
+<div class="lantern-container">
+ <!-- Массивный задний металлический диск -->
+ <div class="outer-ring"></div>
+
+ <!-- Внутренняя канавка с рельефом -->
+ <div class="inner-groove">
+
+ <!-- Само ядро значка (Фонарь) -->
+ <div class="lantern-core">
+ <div class="plate"></div>
+ <div class="sphere-container">
+ <div class="sphere-outer">
+ <div class="sphere-inner"></div>
+ </div>
+ </div>
+ <div class="plate"></div>
+ </div>
+
+ </div>
+
+ <!-- Слой мистической пульсирующей энергии -->
+ <div class="energy-glow"></div>
+ </div>
+
+<style>
+ /* Стили для интеграции HTML-эмблемы в приложение */
+ .lantern-container {
+ position: relative;
+ width: 120px;
+ height: 120px;
+ margin: 0 auto 10px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transform: scale(0.6); /* Масштабируем под интерфейс */
+ }
+
+ .outer-ring {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ border-radius: 50%;
+ background: radial-gradient(circle, transparent 65%, #1a3322 70%, #0d1a11 95%, #050a06 100%),
+ linear-gradient(135deg, #1f402b 0%, #0a140e 50%, #2a5238 100%);
+ box-shadow:
+ inset 0 0 20px rgba(0, 0, 0, 0.9),
+ 0 0 30px rgba(0, 255, 136, 0.2);
+ border: 2px solid rgba(0, 255, 136, 0.2);
+ }
+
+ .inner-groove {
+ position: absolute;
+ width: 82%;
+ height: 82%;
+ border-radius: 50%;
+ background: #08120b;
+ box-shadow:
+ inset 0 0 15px rgba(0, 0, 0, 0.8),
+ 0 0 2px rgba(0, 255, 136, 0.3);
+ border: 4px double rgba(0, 255, 136, 0.15);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .lantern-core {
+ position: relative;
+ width: 60px;
+ height: 60px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
+ filter: drop-shadow(0px 0px 8px rgba(0, 255, 136, 0.8));
+ }
+
+ .plate {
+ width: 55px;
+ height: 10px;
+ background: linear-gradient(to bottom, #39e68d 0%, #00994d 40%, #004d26 100%);
+ border-radius: 2px;
+ box-shadow:
+ inset 0 1px 2px rgba(255, 255, 255, 0.6),
+ inset 0 -1px 3px rgba(0, 0, 0, 0.7),
+ 0 1px 3px rgba(0, 0, 0, 0.5);
+ border: 1px solid #00ff88;
+ }
+
+ .sphere-container {
+ position: relative;
+ width: 45px;
+ height: 45px;
+ margin: -4px 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .sphere-outer {
+ width: 100%;
+ height: 100%;
+ border-radius: 50%;
+ background: linear-gradient(135deg, #39e68d 0%, #00994d 50%, #00331a 100%);
+ box-shadow:
+ inset 0 2px 4px rgba(255, 255, 255, 0.6),
+ inset -1px -2px 5px rgba(0, 0, 0, 0.8),
+ 0 2px 5px rgba(0, 0, 0, 0.6);
+ border: 1px solid #00ff88;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .sphere-inner {
+ width: 54%;
+ height: 54%;
+ border-radius: 50%;
+ background: #060d08;
+ box-shadow:
+ inset 0 2px 5px rgba(0, 0, 0, 0.9),
+ 0 1px 1px rgba(255, 255, 255, 0.2);
+ border: 1px solid rgba(0, 255, 136, 0.4);
+ }
+
+ .energy-glow {
+ position: absolute;
+ width: 60%;
+ height: 60%;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba(0,255,136,0.3) 0%, transparent 70%);
+ pointer-events: none;
+ animation: pulseRing 4s infinite ease-in-out;
+ }
+
+ @keyframes pulseRing {
+ 0%, 100% { transform: scale(0.9); opacity: 0.5; }
+ 50% { transform: scale(1.1); opacity: 0.9; }
+ }
+</style>
